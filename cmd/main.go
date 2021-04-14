@@ -1,7 +1,11 @@
 package main
 
 import (
+	"context"
+	"log"
 	"os"
+	"os/signal"
+	"syscall"
 
 	"github.com/iliaposmac/todo-app"
 	"github.com/iliaposmac/todo-app/pkg/handler"
@@ -43,8 +47,23 @@ func main() {
 
 	server := new(todo.Server)
 
-	if err := server.Run(viper.GetString("port"), handlers.InitRoutes()); err != nil {
-		logrus.Fatalf("Failed to run server %s", err.Error())
+	go func() {
+		if err := server.Run(viper.GetString("port"), handlers.InitRoutes()); err != nil {
+			logrus.Fatalf("Failed to run server %s", err.Error())
+		}
+	}()
+
+	logrus.Print("TodoApp is starting...")
+	quit := make(chan os.Signal, 1)
+	signal.Notify(quit, syscall.SIGTERM, syscall.SIGINT)
+	<-quit
+
+	logrus.Print("TodoApp Shutting Down..")
+	if shutDownEror := server.ShutDown(context.Background()); shutDownEror != nil {
+		log.Fatalf("Error occured with shuting down a server: %s", err.Error())
+	}
+	if dbError := db.Close(); dbError != nil {
+		log.Fatalf("Error occured with shuting down database: %s", err.Error())
 	}
 }
 
