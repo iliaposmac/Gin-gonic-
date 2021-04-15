@@ -2,6 +2,7 @@ package main
 
 import (
 	"context"
+	"fmt"
 	"log"
 	"os"
 	"os/signal"
@@ -16,6 +17,17 @@ import (
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/viper"
 )
+
+// @title Todo App API
+// @version 1.0
+// @description API server for TodoList Application
+
+// @host localhost:8000
+// @BasePath /
+
+// @securityDefinition.apikey ApiKeyAuth
+// @in header
+// @name Authorization
 
 func main() {
 	logrus.SetFormatter((new(logrus.JSONFormatter)))
@@ -65,6 +77,11 @@ func main() {
 	if dbError := db.Close(); dbError != nil {
 		log.Fatalf("Error occured with shuting down database: %s", err.Error())
 	}
+
+	defer func() {
+		str := recover()
+		fmt.Println(str)
+	}()
 }
 
 func initConfig() error {

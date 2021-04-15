@@ -7,6 +7,19 @@ import (
 	"github.com/iliaposmac/todo-app"
 )
 
+// @Summary SignUp
+// @Tags auth
+// @Description create account
+// @ID create-account
+// @Accept json
+// @Produce json
+// @Param input body todo.User true "account info"
+// @Success 200 {integer} integer 1
+// @Failure 400,404 {object} errorResponse
+// @Failure 500 {object} errorResponse
+// @Failure default {object} errorResponse
+// @Router /auth/sign-up [post]
+
 func (h *Handler) SignUp(c *gin.Context) {
 	var input todo.User
 
@@ -32,6 +45,18 @@ type signInInput struct {
 	Password string `json:"password" binding:"required"`
 }
 
+// @Summary SignIn
+// @Tags auth
+// @Description signin
+// @ID sign-in
+// @Accept json
+// @Produce json
+// @Param input body signInInput true "account info"
+// @Success 200 {integer} integer 1
+// @Failure 400,404 {object} errorResponse
+// @Failure 500 {object} errorResponse
+// @Failure default {object} errorResponse
+// @Router /auth/sign-in [post]
 func (h *Handler) SignIn(c *gin.Context) {
 	var input signInInput
 
