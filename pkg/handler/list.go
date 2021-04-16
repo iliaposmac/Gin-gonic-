@@ -8,6 +8,19 @@ import (
 	"github.com/iliaposmac/todo-app"
 )
 
+// @Summary Create Todo List
+// @Tags LIsts
+// @Description Create New TodoList
+// @ID create-todo-list
+// @Accept json
+// @Produce json
+// @Param input body todo.TodoList true "todo-list-info"
+// @Header 200 {string} Bearer
+// @Success 200 {integer} integer 1
+// @Failure 400,404 {object} errorResponse
+// @Failure 500 {object} errorResponse
+// @Failure default {object} errorResponse
+// @Router /api/lists [post]
 func (h *Handler) createList(c *gin.Context) {
 	userId, err := getUserId(c)
 	if err != nil {

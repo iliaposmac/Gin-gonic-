@@ -22,10 +22,12 @@ import (
 // @version 1.0
 // @description API server for TodoList Application
 
-// @host localhost:8000
+// @host localhost:3000
 // @BasePath /
 
-// @securityDefinition.apikey ApiKeyAuth
+// @securityDefinitions.basic BasicAuth
+
+// @securityDefinitions.apikey ApiKeyAuth
 // @in header
 // @name Authorization
 

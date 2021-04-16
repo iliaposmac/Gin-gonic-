@@ -22,6 +22,7 @@ require (
 	github.com/lib/pq v1.10.0 // indirect
 	github.com/magiconair/properties v1.8.5 // indirect
 	github.com/mailru/easyjson v0.7.7 // indirect
+	github.com/mikkeloscar/gin-swagger v0.0.0-20210412112904-c057e978c406 // indirect
 	github.com/mitchellh/mapstructure v1.4.1 // indirect
 	github.com/modern-go/concurrent v0.0.0-20180306012644-bacd9c7ef1dd // indirect
 	github.com/modern-go/reflect2 v1.0.1 // indirect

@@ -19,7 +19,6 @@ import (
 // @Failure 500 {object} errorResponse
 // @Failure default {object} errorResponse
 // @Router /auth/sign-up [post]
-
 func (h *Handler) SignUp(c *gin.Context) {
 	var input todo.User
 
